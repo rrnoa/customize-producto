@@ -1,0 +1,8 @@
+.info-panel .slide-pane__close svg {
+    width: 30px;
+}
+
+.info-panel .slide-pane__header {
+    height: 170px;
+    background-color: #ffffff;
+  }

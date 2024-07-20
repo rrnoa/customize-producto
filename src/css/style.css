@@ -1,0 +1,103 @@
+.margintop-20 {
+  margin-top: 18px;
+}
+
+.disabled {
+  background-color: #F2F2F6 !important;
+  color: #CBCBCB !important;
+  pointer-events: none !important;
+}
+
+.spinner {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; 
+  border-radius: 8.66px;
+  z-index: 1000;
+}
+
+#canvas-wrapper{
+    min-height: 562px;
+}
+.drop-zone {
+    width: 100%;
+    position: absolute;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    height: 562px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    pointer-events: none;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  .no-drag {
+    pointer-events: none;
+  }
+
+  div.inputs {
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+div.inputs input{
+    width: 81px !important;
+}
+
+ul.frame-list {
+    display: flex;
+    list-style-type: none;
+    gap: 20px;
+    margin-left: 0px;
+    margin-bottom: 18px;
+}
+
+.frame-list li{ 
+    padding: 9px;    
+    width: 60px;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    box-shadow: 0px 9px 3px -5px rgba(0, 0, 0, 0.025);
+    cursor: pointer;
+}
+
+.frame-list img{     
+   max-width: 100%;
+}
+
+.frame-list li:hover {
+    padding: 8px;
+    border: 2px solid #AAAAAA;
+}
+

@@ -1,0 +1,696 @@
+.rotate-3d {
+    background-color: rgb(0 0 0 / 50%) !important;
+    transition: opacity 2.5s ease-in-out;
+    border-radius: 50%;
+    position: absolute;
+    left: calc(50% - 35px);
+    height: 55px;
+    width: 55px;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#scroll-mark {
+    z-index: 4;
+    width: 7vh;
+    height: 7vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0 0 0 / 50%) !important;
+    transition: opacity 2.5s ease-in-out;
+    opacity: 1;
+    border-radius: 50%;
+}
+ol,
+ul {
+    list-style: none;
+}
+
+html {
+    font-size: 1.76vh;
+}
+
+ul.frame-list {
+    list-style-type: disc;
+  }
+
+  ul.frame-list li {
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  ul.frame-list li h4 {
+    white-space: nowrap;
+    color: #000;
+    margin: 0 0 5px 0;
+  }
+
+  ul.frame-list li p {
+    margin: 0;
+  }
+
+  .slide-pane__overlay.some-custom-overlay-class.overlay-after-open {
+    z-index: 22;
+  }
+
+  .btn-product-info svg {
+    width: 4vh;
+    height: 4vh;
+  }
+ 
+#user_consent_privacy:checked, #user_consent_terms:checked {
+    color: #fff;
+    border-color: #ec6628;
+    background-color: #ec6628;
+}
+
+#feetsText {
+    position: absolute;
+	top: 10px;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+	display:block;
+}
+
+.spinner {
+    position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; 
+  border-radius: 8.66px;
+  z-index: 1000;
+}
+
+.step.inactive {
+    pointer-events: none; /* Deshabilita eventos de clic */
+    opacity: 0.1; /* Efecto de velo gris */
+}
+
+button.inactive {
+    pointer-events: none; /* Deshabilita eventos de clic */
+    opacity: 0.2; /* Efecto de velo gris */
+}
+
+svg.btn-icons {
+    width: 2.6vh;
+    height: 2.6vh;
+}
+
+img.btn-icons {
+    width: 2.6vh;
+    height: 2.6vh;
+}
+
+.header-item-inner img {    
+    max-width: 170px;
+}
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.2s all ease;
+    -webkit-transition: 0.2s all ease;
+    -moz-transition: 0.2s all ease;
+}
+
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+}
+
+body {    
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;    
+	background: var(--color-fondo-oscuro);
+	color: var(--color-text);	
+}
+.app-container{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/*=== Header area start ===*/
+
+.header-area {    
+    /* border-bottom: 1px solid var(--bordes-areas); */
+    background: var(--color-fondo-claro);
+}
+
+.header-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6vh;
+    height: 70px;
+}
+
+.header-item-inner2 {
+    position: relative;
+}
+
+.selected_img {
+    border: solid;
+}
+
+/*=== step area start ===*/
+.step-area {
+    height: calc(100% - 70px);
+}
+
+.step-area-inner {
+    display: flex;
+    height: 100%;
+    min-height: 600px;
+}
+
+.step-item {
+    width: 100%;
+    padding: 0 3.29vh 6vh 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-item-inner {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px dashed #9E9E9E;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /*padding: 50px 10px;*/
+    background-color: var(--color-lienzo-claro);
+
+}
+
+.step-item-inner canvas{
+    border-radius: 8.66px;
+}
+
+.step-1{
+    width: 100%;
+    position: relative;
+}
+
+.step-1 input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.step-item-inner2 svg {
+    width: 4.5vh;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.step-item-inner2 p {
+    color: var(--color-text-hight-enfasis);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.step-item2 {    
+    background: var(--color-fondo-claro);
+    padding: 0 0 6vh 0;
+   
+}
+
+.step-item2-inside{
+    min-width: 250px;
+    width: 36vh;
+    border-left: 1px solid var(--bordes-areas);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6vh 0 3.29vh;
+    height: 100%;
+
+}
+
+
+
+.step-item2 h2 {
+    color: var(--color-text-hight-enfasis);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 2.2vh;
+    display: flex;
+    align-items: center;
+}
+
+.step-item2-inner.step-item2-inner10{
+    padding-top: 0px;
+}
+.step-item2-inner h2 {
+    font-family: 'Roboto Flex', sans-serif;
+}
+
+.reactEasyCrop_Container{
+    background-color: var(--color-lienzo-claro);
+}
+
+.reactEasyCrop_CropArea.reactEasyCrop_CropAreaGrid{
+    color: rgb(255 255 255 / 80%) !important;
+} 
+
+.step-item2-inner11 {
+    border-radius: 8px;
+    width: 100%;
+    height: 25vh;
+    max-height: 216px;
+    position: relative;
+    display: flex; /* Usando Flexbox para centrar */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    overflow: hidden; /* En caso de que la imagen sea más grande que el contenedor */
+    border-radius: 0.6vh;
+    background-color: var(--color-lienzo-claro);
+}
+.settings-tip button {
+    display: block;
+    background-color: transparent;
+    color: #ffffff;
+}
+.settings-tip span {
+    font-size: 0.8rem;
+}
+
+.settings-tip input {
+    width: 100%;
+    height: 2px;
+}
+
+
+.step-item2-inner .step-item2-inner11 img.default {
+    height: 100%; /* La imagen no excederá el ancho del contenedor */
+    width: 100%;
+    object-fit: cover;
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+}
+
+img.crop {
+    max-width: 100%; /* La imagen no excederá el ancho del contenedor */
+    max-height: 100%; /* La imagen no excederá el alto del contenedor */
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+}
+
+.step-item .step-item-inner img {
+    max-width: 90%;
+    max-height: 90% !important;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.step-item2-inner11 svg.upload-icon {
+    width: 2.6vh;
+    height: 2.6vh;
+}
+
+.tool-bar {
+    display: flex;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    column-gap: 3px;
+}
+
+.btn-preview-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgb(53, 53, 53) -1px 1px 3px;
+    cursor: pointer;
+    height: 3.84vh;
+    width: 3.84vh;
+    background-color: white;
+    border-radius: 0.6vh;
+    border: 1px solid #e5e7eb;
+    padding: 2px 2px;
+    border-top-style: none;
+    border-right-style: none;
+}
+.btn-preview-upload svg {
+    width: 2.5vh;
+    height: 2.5vh;
+    vertical-align: middle;
+}
+
+.step-item2-inner10 {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    /*border-bottom: 1px solid #E4E7EC;*/
+    width: 100%;
+}
+
+.step-item2-inner2 h2 span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: block;
+    background: #344054;
+    margin-left: 12px;
+}
+
+.step-item2-inner2 div.form {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.step-item2-inner2 div.inputs {
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    width: 100%;
+}
+
+.step-item-inner input.drop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+/* .step-item2-inner2 input {
+    color: #646464;
+    font-size: 1rem;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 6vh;
+    height: 3.5vh;   
+    border: 1px solid #E4E7EC;
+    background: #FFF;
+    border-radius: 0.6vh 0.6vh 0.6vh 0.6vh;
+}
+
+.step-item2-inner2 input::placeholder {
+    opacity: 1;
+    color: #646464;
+} */
+
+.step-item2-inner2 div img {
+    display: block;
+}
+
+.step-item2-inner2 form input:last-of-type {
+    border-radius: 0px 6px 6px 0px; 
+}
+
+div.buttons-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* div.buttons-list button{
+    color: #646464;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.84vh;
+    height: 3.84vh;
+    margin-right: 1.6vh;
+    border-radius: 0.6vh;
+    border: 1px solid #E4E7EC;
+    background: #FFF;
+    cursor: pointer;
+}
+ */
+.wrapper_edit_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+}
+
+.action_buttons {
+    color: #646464;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.84vh;
+    height: 3.84vh;
+    border-radius: 0.6vh;
+    border: 1px solid #E4E7EC;
+    background: #FFF;
+}
+
+div.buttons-list button.active {
+    pointer-events: none; /* Deshabilita eventos de clic */
+    color: #FFF;
+    border: none;
+    background: linear-gradient(0deg, #344054 0%, #344054 100%), #FFF;
+}
+
+.step-item2-inner12 {
+    margin-top: 1vh;
+}
+
+#slider-range-min {
+    position: relative;
+    border-radius: 10px;
+    margin-bottom: 3vh;
+    margin-top: 1.5vh;
+    display: flex;
+}
+
+.range-indicator {
+    position: absolute;
+    width: 4px;
+    background-color: rgb(221, 221, 221);
+  }
+  
+  .center {
+    left: calc(50% - 3px);
+    top: -6px; /* Más largo que los demás */
+    bottom: -6px;
+  }
+  
+  .quarter, .three-quarters {
+    top: 8px;
+    bottom: 1px;
+  }
+  
+  .quarter {
+    left: 25%;
+  }
+  
+  .three-quarters {
+    left: 75%;
+  }
+
+input[type=range] {
+    -webkit-appearance: none; /* Necesario para deshacerse del estilo predeterminado en WebKit/Blink */
+  }
+  
+  /* Estilo para la pista */
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    background: #b7babd; /* Color de fondo de la pista */
+    border-radius: 2px; /* Bordes redondeados */
+  }
+  
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ffffff; /* Color de fondo de la pista al enfocar */
+  }
+  
+  /* Estilo para el pulgar */
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Necesario para deshacerse del estilo predeterminado en WebKit/Blink */
+    border: none; /* Elimina cualquier borde predeterminado */
+    height: 1vh; /* ajusta el tamaño del pulgar */
+    width: 1vh; /* mantiene la proporción del tamaño */
+    border-radius: 50%; /* Hace el pulgar completamente redondo */
+    background: #ffffff; /* Color de fondo del pulgar */
+    margin-top: calc(-0.4vh); /* ajusta la alineación del pulgar */
+    cursor: pointer; /* Cambia el cursor a un puntero para indicar que es deslizable */
+  }
+
+  input[type=range]::-moz-range-thumb {
+    -webkit-appearance: none; /* Necesario para deshacerse del estilo predeterminado en WebKit/Blink */
+    border: none; /* Elimina cualquier borde predeterminado */
+    height: 1vh; /* ajusta el tamaño del pulgar */
+    width: 1vh; /* mantiene la proporción del tamaño */
+    border-radius: 50%; /* Hace el pulgar completamente redondo */
+    background: #ffffff; /* Color de fondo del pulgar */
+    margin-top: calc(-0.4vh); /* ajusta la alineación del pulgar */
+    cursor: pointer; /* Cambia el cursor a un puntero para indicar que es deslizable */
+  }
+  
+  /* Estilo para el pulgar al enfocarse/hover/activo */
+  input[type=range]:focus::-webkit-slider-thumb,
+  input[type=range]:hover::-webkit-slider-thumb {
+    background: #ddd; /* Color de fondo del pulgar al enfocar/hover */
+  }
+  
+  /* Mozilla Firefox requiere un conjunto diferente de pseudo-elementos */
+  input[type=range]::-moz-range-track {
+    background: #ddd;
+    border-radius: 4px;
+  }
+
+  
+  /* Para Internet Explorer */
+  input[type=range]::-ms-track {
+    background: transparent; /* IE no permite cambiar el fondo de la pista, así que lo hacemos transparente */
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+  }
+  
+  input[type=range]::-ms-thumb {
+    height: 1vh;
+    width: 1vh;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  
+  input[type=range]::-ms-fill-lower {
+    background: #ddd;
+    border-radius: 4px;
+  }
+  
+  input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 4px;
+  }
+
+.ui-widget-header {
+    border-radius: 10px;
+    background: #344054;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #fff;
+    background: #344054;
+    border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: none;
+    margin-top: -2px;
+    cursor: pointer;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -2px;
+}
+
+.step-item2-inner3 #btn-preview {
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    height: 3.84vh;
+    border-radius: 0.6vh;
+    background: #344054;
+    line-height: 12.4px;
+}
+
+.step-item2-inner5 ul {
+    display: flex;
+    align-items: center;
+}
+
+ul li button.active {
+    color: #fff;
+    background: #344054; 
+}
+
+.step-item2-inner6 {
+    padding-top: 2.2vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.step-item2-inner6 h2 strong {
+    font-size: 25px;
+    font-weight: 700;
+    margin-left: auto;
+}
+
+.step-item2-inner6 a {
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 17.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    border-radius: 0.6vh;
+    background: #344054;
+}
+
+#woodxel_panel_3d{
+    margin-top: 10px;
+    position: absolute;
+    bottom: 40px;
+}
+
+.step-item2 a:hover {
+    opacity: .8;
+}
+
+.step-item2 button:hover {
+    opacity: .8;
+}
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+

@@ -1,0 +1,29 @@
+/* ProductDetails.css */
+.product-details-container {
+    background: #ffffff;
+    border-radius: 5px;
+  }
+  
+  .product-details-container h2 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .product-attributes {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .product-attributes li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-description {
+    margin-top: 1rem;
+    text-align: justify;
+  }
+
+  .info-panel {
+    max-width: 575px;
+    min-width: 350px;
+  }
