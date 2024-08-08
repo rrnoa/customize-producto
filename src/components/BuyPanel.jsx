@@ -43,7 +43,7 @@ const BuyPanel = ({pixelatedImage, colorsArray, colorDetails, blockSize, xBlocks
     formData.append("pdf1", pdf1);
     formData.append("pdf2", pdf2);
  
-   fetch("https://nut.woodxel.com/nut/wp-admin/admin-ajax.php", {
+   fetch("https://woodxel.com/wp-admin/admin-ajax.php", {
    //fetch("https://woodxel-plus.local/wp-admin/admin-ajax.php", {
       method: "POST",
       credentials: 'include',
@@ -57,8 +57,8 @@ const BuyPanel = ({pixelatedImage, colorsArray, colorDetails, blockSize, xBlocks
         }
       })
       .then(() => {
-        //window.location.href = 'https://woodxel-plus.local/checkout/';
-        window.location.href = 'https://nut.woodxel.com/nut/checkout/';
+        //window.location.href = 'https://woodxel-plus.local/cart/';
+        window.location.href = 'https://woodxel.com/cart/';
       })
       .catch(() => {
         alert("Connection Error. Please, reload page");
@@ -447,7 +447,7 @@ const BuyPanel = ({pixelatedImage, colorsArray, colorDetails, blockSize, xBlocks
 
   return (
     <>
-      <div>
+      <div style={{marginTop: '16px'}} >
         <button className={`eut-btn eut-btn-alt eut-black-color ${currentStep!==3 || isLoading?'disabled':''}`} onClick={handleBuy}>Add to cart</button>
 			</div>
     </> 

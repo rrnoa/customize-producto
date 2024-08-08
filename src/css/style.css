@@ -1,5 +1,38 @@
-.margintop-20 {
-  margin-top: 18px;
+#root .woocommerce form .form-row{
+  margin: 0;
+  padding: 0;
+}
+
+.custom-sizes .inputs {
+  display: flex;
+  gap: 20px; 
+  
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  padding: 5px;  
+}
+
+
+.custom-sizes {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.btn-change-img{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.margintop-40 {
+  margin-top: 40px;
 }
 
 .disabled {
@@ -17,7 +50,6 @@
   height: 100%;
   top: 0;
   left: 0; 
-  border-radius: 8.66px;
   z-index: 1000;
 }
 
@@ -63,16 +95,9 @@
     pointer-events: none;
   }
 
-  div.inputs {
-    display: flex;
-    align-items: end;
-    gap: 10px;
-    width: 100%;
-    margin-top: 20px;
-}
-
 div.inputs input{
-    width: 81px !important;
+    width: 60px !important;
+    padding: 6px !important;
 }
 
 ul.frame-list {

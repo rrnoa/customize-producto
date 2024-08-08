@@ -5,7 +5,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
 import { configCamera, configRender, configLights, configFloor, configWall, animate, configControls, configFrame } from './three-setup';
 import { FingerMoveSvg } from './icons/SvgIcons';
-import { render } from 'react-dom';
 
 
 const Escena3D = ({ width, height, blockSize, croppedImg, setPixelInfo, onGroupRefChange, setProductImg, handleLoading, sceneRef, renderRef, selectedFrame }) => {

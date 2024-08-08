@@ -148,12 +148,12 @@ export const configFrame = (largo, alto, scene, selectedFrame) => {
             bevelEnabled: false, // no queremos biselado
         };
     
-        /* const textureLoader = new THREE.TextureLoader();
+        const textureLoader = new THREE.TextureLoader();
         let textureUrl = 'woodxel-resources/textures/wood-texture.jpg';
         if (import.meta.env.MODE !== 'development') {
             textureUrl = new URL(textureUrl, import.meta.url).href;
         }
-        const woodTexture = textureLoader.load(textureUrl);  */
+        const woodTexture = textureLoader.load(textureUrl);
         
         const geometryL = new THREE.ExtrudeGeometry(shapeL, extrudeSettings);
         const geometryA = new THREE.ExtrudeGeometry(shapeA, extrudeSettings);    
@@ -163,23 +163,27 @@ export const configFrame = (largo, alto, scene, selectedFrame) => {
         // Crear el material y el mesh (malla)
         switch(selectedFrame) {
             case 0:
-                colorFrame = new THREE.Color(0x000000);
+                colorFrame = new THREE.Color(0x29282e);
               break;
             case 1:
-                colorFrame = new THREE.Color(0xd5d5d5);
+                colorFrame = new THREE.Color(0xd3d3d3);
               break;
             case 2:
-                colorFrame = new THREE.Color(0xB8967C);
+                //colorFrame = new THREE.Color(0x745840);
+                colorFrame = new THREE.Color(0xffffff);
                 break;
             default:
-                colorFrame = new THREE.Color(0xffffff);
+                colorFrame = new THREE.Color(0xff0000);
           }
+        let material = new THREE.MeshStandardMaterial({ color: colorFrame });
         
-        const material = new THREE.MeshStandardMaterial({ color: colorFrame });
+        if (selectedFrame === 2) {
+            material.map = woodTexture;
+        }
         const bottom = new THREE.Mesh(geometryL, material);
         let left = new THREE.Mesh(geometryA, material);
     
-        bottom.castShadow = true;
+        //bottom.castShadow = true;
         bottom.receiveShadow = true;
         
         let top = bottom.clone();
@@ -219,7 +223,6 @@ export const animate = (renderer, scene, camera, width, height, setProductImg, s
             snapshot(renderer, width, height, setProductImg);
             countAnimate ++;
         }
-       console.log("...")
     }
     animation();
 
@@ -232,9 +235,6 @@ function removeObjectByName(scene, name) {
     const object = scene.getObjectByName(name);
     if (object) {
       object.parent.remove(object);
-      console.log(`Objeto con nombre ${name} eliminado.`);
-    } else {
-      console.log(`No se encontró ningún objeto con nombre ${name}.`);
     }
   }
 

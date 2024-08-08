@@ -1,12 +1,21 @@
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import Desktop from './pages/desktop'
 import { RotatingSquare } from 'react-loader-spinner'
 
 function App() {
 
+  const [hiddenImageUrl, setHiddenImageUrl] = useState(null);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hiddenImageUrlParam = urlParams.get('hidden_image_url');
+    setHiddenImageUrl(hiddenImageUrlParam);
+    console.log(hiddenImageUrlParam)
+  }, []);
+
   return (
     <Suspense fallback={<Loading />}>
-      <Desktop/>
+      <Desktop hiddenImageUrl={hiddenImageUrl}/>
     </Suspense>
   )
 }

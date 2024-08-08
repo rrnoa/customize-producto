@@ -10,7 +10,7 @@ import BuyPanel from '../components/BuyPanel';
 import getCroppedImg from '../libs/cropImage';
 import { Rotate3dSvg} from '../components/icons/SvgIcons';
 //import Export3d from '../components/Export3d';
-import { Blocks, RotatingSquare } from 'react-loader-spinner';
+import { RotatingSquare } from 'react-loader-spinner';
 
 import "react-sliding-pane/dist/react-sliding-pane.css";
 
@@ -21,7 +21,7 @@ const framesImages = [
 	'woodxel-resources/images/frame-not.png'];
 
 
-export default function Desktop() {
+export default function Desktop({hiddenImageUrl}) {
 	const [price, setPrice] = useState(0);
 	const [selectedFrame, setSelectedFrame] = useState(3);
 	const [invalidWidth, setInvalidWidth] = useState(false);
@@ -33,7 +33,7 @@ export default function Desktop() {
 	const [isDragging, setIsDragging] = useState(false);
 
 	const [showRotateIcon, setShowRotateIcon] = useState(true);
-	const [uploadedImage, setUploadedImage] = useState("");
+	const [uploadedImage, setUploadedImage] = useState(hiddenImageUrl?hiddenImageUrl:"");
 	const [previewImage, setPreviewImage] = useState(null);
 	const [imageReady, setImageReady] = useState(null);
 
@@ -55,8 +55,8 @@ export default function Desktop() {
 	const [brightness, setBrightness] = useState(100);
 
     /*Opciones del crop */
-    const [width, setWidth] = useState(30);
-    const [height, setHeight] = useState(30);
+    const [width, setWidth] = useState(24);
+    const [height, setHeight] = useState(24);
     const [crop, setCrop] = useState({ x: 0, y: 0});
     const [zoom, setZoom] = useState(1);
 	
@@ -75,16 +75,15 @@ export default function Desktop() {
 	useEffect(() => {
 		sceneRef.current = new THREE.Scene();
 		renderRef.current = new THREE.WebGLRenderer({ antialias: true});
-	},[]);
+		if(hiddenImageUrl) {
+			setUploadedImage(hiddenImageUrl);
+			setCurrentStep(2)
+		}
+	},[hiddenImageUrl]);
 
 	// Función para avanzar al siguiente paso
 	const goToNextStep = () => {
 		setCurrentStep(prevStep => prevStep + 1);
-	};
-
-	// se utiliza para cuando se termine de dibujar moverse al paso proximo
-	const goToStep4 = () => {
-		setCurrentStep(4);
 	};
 	
 	// Función para retroceder al paso anterior
@@ -94,7 +93,6 @@ export default function Desktop() {
 
 	// Actualiza el estado cuando el recorte se completa
 	const onCropComplete = (croppedArea, croppedAreaPixels) => {
-		console.log("crop complete")
 		croppedAreaPixelsRef.current = croppedAreaPixels;		
 		//updatePreviewImage();
 	};
@@ -122,6 +120,7 @@ export default function Desktop() {
 			resizeAndCompressImage(file, maxWidth, maxHeight, quality, (compressedBlob) => {
 				// Continúe con el procesamiento aquí
 				const img = URL.createObjectURL(compressedBlob);
+				console.log(img)
 				setUploadedImage(img);
 				setPreviewImage(img);
 				setIsLoading(false); // Finalizar el indicador de carga
@@ -130,8 +129,8 @@ export default function Desktop() {
 				setRotation(0);
 				setContrast(100);
 				setBrightness(100);     
-				setWidth(30);
-				setHeight(30);
+				setWidth(24);
+				setHeight(24);
 				setCrop({ x: 0, y: 0});
 				setZoom(1);
 				setShowPlaceholderW(true);
@@ -148,7 +147,7 @@ export default function Desktop() {
 	const handleWidth = (event) => {
 		let { value } = event.target;	
 		if (value < 24 || value > 300) {
-			setInvalidWidth(true);
+			setInvalidWidth(true);			
 		}
 		else {
 			setInvalidWidth(false);
@@ -175,7 +174,11 @@ export default function Desktop() {
 		setIsLoading(true);
 		const i = await getCroppedImg(uploadedImage, croppedAreaPixelsRef.current, rotation, brightness, contrast);
 		setImageReady(i);
-	}	
+	}
+
+	const handleEdit = () => {
+		setCurrentStep(2)
+	}
 
 	const handleExportGroupRef = (group)=>{
 		setExportGroupRef(group);
@@ -213,6 +216,19 @@ export default function Desktop() {
 		event.preventDefault()
 		setSelectedFrame(index);
 	};
+
+	const handleBlur = (event, setValue) => {
+        let value = parseInt(event.target.value, 10);
+        if (isNaN(value)) {
+            setValue('');
+        } else if (value < 24) {
+            setValue(24);
+        } else if (value > 300) {
+            setValue(300);
+        } else {
+            setValue(value);
+        }
+    };
 
 	
   return (
@@ -272,6 +288,7 @@ export default function Desktop() {
 									{ currentStep == 2 && <>
 									<Cropper
 										ref={cropperRef}
+										//image={hiddenImageUrl?hiddenImageUrl:uploadedImage}
 										image={uploadedImage}
 										rotation={rotation}
 										onCropChange={setCrop}
@@ -282,8 +299,9 @@ export default function Desktop() {
 										aspect={width / height}
 										onZoomChange={(newZoom) => setZoom(newZoom)}
 										style={{ containerStyle: { width: '100%', height: '100%', margin:'0', maxHeight: '562px', backgroundColor:'#ffffff'}, mediaStyle: imageStyle }}
-									/>
-									</>}
+									/>									
+									</>
+									}
 									<>
 									<Scene3d 
 											width={width * 0.0254}
@@ -297,20 +315,23 @@ export default function Desktop() {
 											sceneRef = {sceneRef.current }
 											renderRef = {renderRef.current}
 											selectedFrame={selectedFrame}
-									/>
-										
+									/>										
 										{/* <Export3d 
 										exportGroup={exportGroupRef}
 										handleLoading = {setIsLoading}
 										setCurrentStep = {setCurrentStep}
 										/> */}
+									
 										{showRotateIcon && 
 										<div className='rotate-3d' onMouseEnter={()=> setShowRotateIcon(false)}>
 											<Rotate3dSvg/>
 										</div>}
-									</>					
-								
-																					
+									</>
+								{ currentStep !== 1 && 												
+									<button	className={`btn-change-img eut-onsale eut-small-text eut-bg-primary-1 ${currentStep==1?"disabled":""}`} onClick={() => document.getElementById('fileInput').click()}>
+										Change image
+									</button>	
+								}								
 							</div>
 					</div>
 					<div className="eut-entry-summary" style={{position: 'relative'}}>
@@ -324,44 +345,59 @@ export default function Desktop() {
 							wrapperStyle={{}}
 							wrapperClass=""
 							/>
+						</div>						
+						<h1 className="eut-h2 eut-product-title product_title entry-title">IMAGE CUSTOMIZED</h1>
+						<div className='custom-product-description'>
+							<p>Transform your photos into unique, handcrafted pixelated wood art. Simply upload your image, choose your size, place your order and receive a ready-to-hang masterpiece with free shipping across the USA.</p>
 						</div>
-						<h5 className="eut-single-price"><span className="woocommerce-Price-amount amount">
-							<span className="woocommerce-Price-currencySymbol">$</span>{price}</span>
-						</h5>
-						<h1 className="eut-h2 eut-product-title product_title entry-title">CUSTOMIZE YOUR COMMISION</h1>
-						<div className="eut-description">
-							<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-						</div>
-						<div>							
-							<button	className={currentStep==1?"disabled":""} onClick={() => document.getElementById('fileInput').click()}>
-								Change image
-							</button>
-							<div className="inputs">												
-								<input	
-								className={currentStep==1 || currentStep===3?"disabled":""}							
-								type="number"
-								label="Width"
-								placeholder={showPlaceholderW?"min 24\"":" "}									
-								onChange={handleWidth}
-								onFocus={(even)=>{even.target.select(); setShowPlaceholderW(false)}}									
-								value = {width || ""}
-								/>							
-															
-								<input
-								className={currentStep==1 || currentStep===3 ?"disabled":""}
-								min="24" 
-								max="300"
-								type="number"
-								label="Height"									
-								placeholder={showPlaceholderH?"min 24\"":" "}									
-								onChange={handleHeight}
-								onFocus={(even)=>{even.target.select(); setShowPlaceholderH(false)}}									
-								value = {height || ""}
-								/>											
+						<div>
+						<div className='custom-sizes woocommerce'>
+							<form>
+							<div className="inputs">
+								<p className="form-row form-row-first" id="width_field" data-priority="10">
+									<label htmlFor="width" className="">Width</label>
+									<span className="woocommerce-input-wrapper">
+										<input 
+										className={`input-text ${currentStep == 1 || currentStep === 3 ? "disabled" : ""}`} 
+										id="width"
+										type="number"
+										onChange={handleWidth}
+										onFocus={(even)=>{even.target.select()}}
+										onBlur={(event) => handleBlur(event, setWidth)}
+										value={width}
+										min={24}
+										max={300}
+										/>
+									</span>
+								</p>
+								<p className="form-row form-row-first" id="height_field" data-priority="10">
+									<label htmlFor="height" className="">Height</label>
+									<span className="woocommerce-input-wrapper">
+										<input 
+										className={`input-text ${currentStep == 1 || currentStep === 3 ? "disabled" : ""}`} 
+										min="24"
+										max="300"
+										type="number"
+										onChange={handleHeight}
+										onFocus={(even)=>{even.target.select()}}
+										onBlur={(event) => handleBlur(event, setHeight)}
+										value={height}
+										/>
+									</span>
+								</p>
 							</div>
-							<button className={`margintop-20 ${currentStep==1 || currentStep===3?'disabled':''}`} onClick={handleView}>3D Preview</button>
+								
+							</form>
+							<div className=''>
+								<button style={{borderRadius: 0}} className={`eut-btn button eut-btn-alt ${currentStep == 3 ? '' : 'disabled'}`} onClick={handleEdit}>Edit</button>
+							</div>
+						</div>
+						<div style={{marginTop: '40px'}}>
+							<button style={{borderRadius: 0}} className={`ut-btn button eut-btn-alt ${currentStep == 1 || currentStep === 3 ? 'disabled' : ''}`} onClick={handleView}>3D Preview</button>
+						</div>
+							<label className="input-label margintop-40" style={{display: 'block', marginBottom: '6px', lineHeight: 'normal'}}>Select a frame</label>
 							<div>
-								<ul className='frame-list margintop-20'>
+								<ul className='frame-list'>
 									{framesImages.map((imgFrame, index) => {
 										if (import.meta.env.MODE !== 'development') {
 											imgFrame = new URL(imgFrame, import.meta.url).href;
@@ -374,6 +410,9 @@ export default function Desktop() {
 									})}									
 								</ul>
 							</div>
+							<h5 className="eut-single-price" style={{display:'block', marginTop: '35px'}}><span className="woocommerce-Price-amount amount">
+								<span className="woocommerce-Price-currencySymbol">$</span>{price}</span>
+							</h5>
 							<BuyPanel
 								pixelatedImage = {pixelInfo.pixelatedImage}
 								colorsArray = {pixelInfo.colorsArray}
