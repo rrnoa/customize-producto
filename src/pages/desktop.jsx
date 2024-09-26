@@ -4,7 +4,6 @@ import * as THREE from 'three';
 import Cropper from "react-easy-crop";
 import "react-easy-crop/react-easy-crop.css";
 import '../css/style.css';
-//import '../css/Info.css'
 import Scene3d from "../components/Scene3d";
 import BuyPanel from '../components/BuyPanel';
 import getCroppedImg from '../libs/cropImage';
@@ -13,6 +12,7 @@ import { Rotate3dSvg} from '../components/icons/SvgIcons';
 import { RotatingSquare } from 'react-loader-spinner';
 
 import "react-sliding-pane/dist/react-sliding-pane.css";
+import Export3d from '../components/Export3d';
 
 const framesImages = [
 	'woodxel-resources/images/frame-black.png',
@@ -298,7 +298,7 @@ export default function Desktop({hiddenImageUrl}) {
 										zoomSpeed={0.1}
 										aspect={width / height}
 										onZoomChange={(newZoom) => setZoom(newZoom)}
-										style={{ containerStyle: { width: '100%', height: '100%', margin:'0', maxHeight: '562px', backgroundColor:'#ffffff'}, mediaStyle: imageStyle }}
+										style={{ containerStyle: { width: '100%', height: '100%', margin:'0', backgroundColor:'#ffffff'}, mediaStyle: imageStyle }}
 									/>									
 									</>
 									}
@@ -316,11 +316,7 @@ export default function Desktop({hiddenImageUrl}) {
 											renderRef = {renderRef.current}
 											selectedFrame={selectedFrame}
 									/>										
-										{/* <Export3d 
-										exportGroup={exportGroupRef}
-										handleLoading = {setIsLoading}
-										setCurrentStep = {setCurrentStep}
-										/> */}
+										
 									
 										{showRotateIcon && 
 										<div className='rotate-3d' onMouseEnter={()=> setShowRotateIcon(false)}>
@@ -394,6 +390,11 @@ export default function Desktop({hiddenImageUrl}) {
 						</div>
 						<div style={{marginTop: '40px'}}>
 							<button style={{borderRadius: 0}} className={`ut-btn button eut-btn-alt ${currentStep == 1 || currentStep === 3 ? 'disabled' : ''}`} onClick={handleView}>3D Preview</button>
+							<Export3d 
+								exportGroup = {exportGroupRef}
+								handleLoading = {setIsLoading}
+								currentStep = {currentStep}
+							/>
 						</div>
 							<label className="input-label margintop-40" style={{display: 'block', marginBottom: '6px', lineHeight: 'normal'}}>Select a frame</label>
 							<div>
